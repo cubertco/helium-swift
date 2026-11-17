@@ -8,10 +8,12 @@ import Foundation
 struct CountrySignals: Equatable {
     let deviceRegion: String?
     let storeCountry: String?
+    let ipCountry: String?
 
-    init(deviceRegion: String? = nil, storeCountry: String? = nil) {
+    init(deviceRegion: String? = nil, storeCountry: String? = nil, ipCountry: String? = nil) {
         self.deviceRegion = deviceRegion
         self.storeCountry = storeCountry
+        self.ipCountry = ipCountry
     }
 }
 
