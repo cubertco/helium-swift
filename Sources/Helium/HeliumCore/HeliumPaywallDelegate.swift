@@ -98,7 +98,9 @@ class HeliumPaywallDelegateWrapper {
 
         var resolvedAlreadyOwnedViaWebCheckout = false
 
-        if let simulated = await Helium.testing.simulatedPurchaseStatusIfActive(productId: storeKitProductId) {
+        if let authorize = Helium.config.purchaseAuthorization, !(await authorize()) {
+            transactionStatus = .cancelled
+        } else if let simulated = await Helium.testing.simulatedPurchaseStatusIfActive(productId: storeKitProductId) {
             transactionStatus = simulated
         } else {
             let stripeApplePayFlowEnabled = ApplePayHelper.shared.getStripeApplePayAvailable()

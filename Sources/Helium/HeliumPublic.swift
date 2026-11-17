@@ -679,6 +679,11 @@ public class HeliumConfig {
     /// Adjust to RevenueCatDelegate() if using RevenueCat or if you want to handle your own purchase logic, create a custom implementation. You can also subclass
     /// StoreKitDelegate or RevenueCatDelegate for custom implementations.
     public var purchaseDelegate: HeliumPaywallDelegate = StoreKitDelegate()
+
+    /// Awaited before any payment processor starts a transaction or checkout.
+    /// A false result cancels the attempt. Nil preserves the default behavior.
+    public var purchaseAuthorization: (() async -> Bool)?
+
     
     /// By default, Helium will look for a file named "helium-fallbacks.json". Override by setting this.
     /// See https://docs.tryhelium.com/guides/fallback-bundle
